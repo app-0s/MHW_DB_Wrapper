@@ -42,7 +42,14 @@ export class NavMenu extends Component {
                 //</NavItem>
                 }
                 <NavItem>
-                    <NavLink tag={Link} className="text-dark" to="/armor-data">Armor data</NavLink>
+                  <NavLink tag={Link} className="text-dark" to="/home">Home</NavLink>
+                </NavItem>
+                {//<NavItem>
+                //    <NavLink tag={Link} className="text-dark" to="/">Armor data</NavLink>
+                //</NavItem>
+                }
+                <NavItem>
+                    <NavLink tag={Link} className="text-dark" to="/armor-search">Armor Search</NavLink>
                 </NavItem>
                 
               </ul>

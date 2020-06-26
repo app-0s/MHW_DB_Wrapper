@@ -7,6 +7,7 @@ import { Counter } from './components/Counter';
 import { ArmorData } from './components/ArmorData';
 
 import './custom.css'
+import { ArmorSearch } from './components/armor/ArmorSearch';
 
 export default class App extends React.Component {
   static displayName = App.name;
@@ -15,15 +16,20 @@ export default class App extends React.Component {
     return (
         <Layout>
         {
+          // TODO: WOULD LIKE TO MOVE THIS TO A SEPERATE ROUTE FILE
             //<Route exact path='/' component={Home} />
             //<Route path='/counter' component={Counter} />
             //<Route path='/fetch-data' component={FetchData} />
             //<Route path='/armor-data' component={ArmorData} />
-        }
-        <Route exact path='/' component={ArmorData} />
+            //<Route exact path='/' component={ArmorData} />
+            }
+        <Route exact path='/' component={ArmorSearch} />
+        <Route path='/armor-search' component={ArmorSearch} />
+        <Route path="/home" component={Home} />
+            
       </Layout>
     );
   }
 }
 
-        // Note: Try moving routes to another file
+        // Note: Have to setup webpack/typescript transpilation within vsco/vscommunity 2019

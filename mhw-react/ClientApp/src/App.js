@@ -16,8 +16,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_router_1 = require("react-router");
 var Layout_1 = require("./components/Layout");
-var ArmorData_1 = require("./components/ArmorData");
+var Home_1 = require("./components/Home");
 require("./custom.css");
+var ArmorSearch_1 = require("./components/armor/ArmorSearch");
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
     function App() {
@@ -25,11 +26,13 @@ var App = /** @class */ (function (_super) {
     }
     App.prototype.render = function () {
         return (React.createElement(Layout_1.Layout, null,
-            React.createElement(react_router_1.Route, { exact: true, path: '/', component: ArmorData_1.ArmorData })));
+            React.createElement(react_router_1.Route, { exact: true, path: '/', component: ArmorSearch_1.ArmorSearch }),
+            React.createElement(react_router_1.Route, { path: '/armor-search', component: ArmorSearch_1.ArmorSearch }),
+            React.createElement(react_router_1.Route, { path: "/home", component: Home_1.Home })));
     };
     App.displayName = App.name;
     return App;
 }(React.Component));
 exports.default = App;
-// Note: Try moving routes to another file
+// Note: Have to setup webpack/typescript transpilation within vsco/vscommunity 2019
 //# sourceMappingURL=App.js.map

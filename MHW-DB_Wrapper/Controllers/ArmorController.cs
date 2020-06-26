@@ -109,6 +109,11 @@ namespace MHW_DB_Wrapper.Controllers
         //    return null;
         //}
 
+        /// <summary>
+        /// Retrieves named Armor JSON object and status of request
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         [HttpGet("name/{name}")]
         public async Task<IActionResult> Get(string name)
         {
@@ -132,6 +137,38 @@ namespace MHW_DB_Wrapper.Controllers
             }
 
             return BadRequest($"Armor Get request failed (for queried name {name})");
+        }
+
+        /// <summary>
+        /// Retrieves JSON objects and status of request based on query string
+        /// </summary>
+        /// <param name="qstring">Query string of parameters to search for</param>
+        /// <returns></returns>
+        [HttpGet("search/armor/qname={armorQname}")]// Long winded form, may reduce to something that allows greater flexibility and more advanced searches
+        public async Task<IActionResult> Search(string armorQname)
+        {
+            // Change uri to make use of like query search (example: https://mhw-db.com/armor?q={%22name%22:{%22$like%22:%22bone%20greaves%%22}} )
+            string uri = $"https://mhw-db.com/armor?q={{\"name\":{{\"$like\":\"%{armorQname}%\"}}}}" + // Using wildcard (%) before and after
+                $"&p={{\"id\":true, \"name\":true, \"type\":true, \"rank\":true}}";                                                  // Added projection capability for search results display
+            // TODO: Could switch between wildcard and exact search somehow
+            var request = new HttpRequestMessage(HttpMethod.Get, uri);  // 
+            var client = _httpClientFactory.CreateClient();
+
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseStream = await response.Content.ReadAsStreamAsync();
+
+                string armorJsonArray = ReadStream(responseStream);
+
+                // convert array to json
+                var armorResults = JsonConvert.DeserializeObject<Armor[]>(armorJsonArray);
+
+                return Ok(armorResults);
+            }
+
+            return BadRequest($"Armor Search request failed ");
         }
 
         #region Stream Conversion. May move to seperate static class

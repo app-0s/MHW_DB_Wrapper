@@ -2,16 +2,16 @@
 import Armor from './armor/Armor.js'
 import Defense from './shared-stats/defense';
 
-interface AdProps { }
+interface IProps { }
 
-interface AdState {
-    armor: Armor,
+interface IState {
+    armor: any,
     loading: boolean;
 }
 
-export class ArmorData extends React.Component <AdProps, AdState> {
+export class ArmorData extends React.Component <IProps, IState> {
     static displayName = ArmorData.name;
-    constructor(props: AdProps) {
+    constructor(props: IProps) {
         super(props);
 
         this.state = {
@@ -79,7 +79,7 @@ export class ArmorData extends React.Component <AdProps, AdState> {
              </div>
         );
     }
-
+    // TODO: Would like show set info on side IF a set armor is a part of set  
     static renderArmorDefense(defense: Defense) {
         return (
             <table className="table table-striped">
@@ -124,7 +124,7 @@ export class ArmorData extends React.Component <AdProps, AdState> {
     {
         try {
             // Call id route for armor
-            const response = await fetch('armor/id/20'); // Initially thinking this is same name as armorcontroller
+            const response = await fetch('armor/name/20'); // Initially thinking this is same name as armorcontroller
             
             const data = await response.json();
             //await console.log("Data response: " + response.status);
