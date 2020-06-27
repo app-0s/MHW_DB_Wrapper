@@ -57,12 +57,16 @@ var ArmorData = /** @class */ (function (_super) {
     function ArmorData(props) {
         var _this = _super.call(this, props) || this;
         _this.state = {
+            //armorId: this.props.location.state.armorId,
             armor: new Armor_js_1.default(),
             loading: true
         };
         return _this;
     }
+    //
     ArmorData.prototype.componentDidMount = function () {
+        console.log("Location State?" + this.props.location.state);
+        console.log("Armor Id: " + this.props.location.state.armorId);
         this.getArmorData();
     };
     // Table of Armor stats
@@ -91,6 +95,7 @@ var ArmorData = /** @class */ (function (_super) {
                             " ")))),
             ArmorData.renderArmorDefense(armor.defense)));
     };
+    // TODO: Would like show set info on side IF a set armor is a part of set  
     ArmorData.renderArmorDefense = function (defense) {
         return (React.createElement("table", { className: "table table-striped" },
             React.createElement("thead", null,
@@ -128,12 +133,18 @@ var ArmorData = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, fetch('armor/id/20')];
+                        if (this.props.location.state.armorId == null) {
+                            console.log("Armor Id is null/undefined");
+                            return [2 /*return*/];
+                        }
+                        _a.label = 1;
                     case 1:
+                        _a.trys.push([1, 4, , 5]);
+                        return [4 /*yield*/, fetch('armor/id/' + this.props.location.state.armorId)];
+                    case 2:
                         response = _a.sent();
                         return [4 /*yield*/, response.json()];
-                    case 2:
+                    case 3:
                         data = _a.sent();
                         //await console.log("Data response: " + response.status);
                         console.log(data);
@@ -143,12 +154,12 @@ var ArmorData = /** @class */ (function (_super) {
                             armor: new Armor_js_1.default(data),
                             loading: false
                         });
-                        return [3 /*break*/, 4];
-                    case 3:
+                        return [3 /*break*/, 5];
+                    case 4:
                         err_1 = _a.sent();
                         console.log("Error: ", err_1);
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
                 }
             });
         });

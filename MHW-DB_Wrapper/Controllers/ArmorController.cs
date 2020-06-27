@@ -53,8 +53,11 @@ namespace MHW_DB_Wrapper.Controllers
             return BadRequest($"Armor GetAll request failed");
         }
         [HttpGet("id/{id}", Name = "GetArmorId")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(int? id)
         {
+            if(!id.HasValue || id == 0)
+                return null;
+
             string uri = $"https://mhw-db.com/armor/{id}";
 
             var request = new HttpRequestMessage(HttpMethod.Get, uri);// Create Request

@@ -51,7 +51,11 @@ export class NavMenu extends Component {
                 <NavItem>
                     <NavLink tag={Link} className="text-dark" to="/armor-search">Armor Search</NavLink>
                 </NavItem>
-                
+                            {
+                //<NavItem>
+                //  <NavLink tag={Link} className="text-dark" to="/armor-data">Armor data ID 20</NavLink>
+                //</NavItem>
+                            }
               </ul>
             </Collapse>
           </Container>

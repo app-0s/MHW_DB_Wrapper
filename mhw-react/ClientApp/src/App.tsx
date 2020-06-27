@@ -5,9 +5,9 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { ArmorData } from './components/ArmorData';
-
-import './custom.css'
 import { ArmorSearch } from './components/armor/ArmorSearch';
+import './custom.css'
+
 
 export default class App extends React.Component {
   static displayName = App.name;
@@ -22,11 +22,12 @@ export default class App extends React.Component {
             //<Route path='/fetch-data' component={FetchData} />
             //<Route path='/armor-data' component={ArmorData} />
             //<Route exact path='/' component={ArmorData} />
-            }
+            } 
         <Route exact path='/' component={ArmorSearch} />
         <Route path='/armor-search' component={ArmorSearch} />
         <Route path="/home" component={Home} />
-            
+        <Route path='/armor-data' component={ArmorData} />
+        {/* <Route path='/armor-data' render={() => <ArmorData armorId={20} />} /> */}
       </Layout>
     );
   }

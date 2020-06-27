@@ -1,26 +1,32 @@
 ﻿import * as React from 'react';
 import Armor from './armor/Armor.js'
-import Defense from './shared-stats/defense';
+import Defense from './shared-stats/defense.js';
 
-interface IProps { }
+interface IProps { 
+    location: any
+}
 
 interface IState {
+    //armorId: number
     armor: any,
     loading: boolean;
 }
 
-export class ArmorData extends React.Component <IProps, IState> {
+export class ArmorData extends React.Component<IProps, IState> {
     static displayName = ArmorData.name;
     constructor(props: IProps) {
         super(props);
 
         this.state = {
+            //armorId: this.props.location.state.armorId,
             armor: new Armor(),
             loading: true
         };
     }
-
+    //
     componentDidMount() {
+        console.log("Location State?" + this.props.location.state);
+        console.log("Armor Id: " + this.props.location.state.armorId);
         this.getArmorData();
     }
 
@@ -122,9 +128,14 @@ export class ArmorData extends React.Component <IProps, IState> {
 
     async getArmorData()
     {
+        if (this.props.location.state.armorId == null) {
+            console.log("Armor Id is null/undefined");
+            return;
+        }
+
         try {
             // Call id route for armor
-            const response = await fetch('armor/name/20'); // Initially thinking this is same name as armorcontroller
+            const response = await fetch('armor/id/' + this.props.location.state.armorId); // Initially thinking this is same name as armorcontroller
             
             const data = await response.json();
             //await console.log("Data response: " + response.status);

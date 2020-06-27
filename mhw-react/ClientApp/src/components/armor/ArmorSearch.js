@@ -53,6 +53,7 @@ exports.ArmorSearch = void 0;
 var React = require("react");
 var ArmorSearchResultDisplay_js_1 = require("./ArmorSearchResultDisplay.js");
 var reactstrap_1 = require("reactstrap");
+// TODO: Provide advanced search capabilities (i.e. base defence > 50, type = head, etc)
 var ArmorSearch = /** @class */ (function (_super) {
     __extends(ArmorSearch, _super);
     function ArmorSearch(props) {
@@ -69,6 +70,8 @@ var ArmorSearch = /** @class */ (function (_super) {
     }
     ArmorSearch.prototype.handleChange = function (event) {
         this.setState({ armorSearchText: event.target.value });
+        // Test comment
+        // console.log(test);
     };
     ArmorSearch.prototype.handleSubmit = function (event) {
         this.setState({

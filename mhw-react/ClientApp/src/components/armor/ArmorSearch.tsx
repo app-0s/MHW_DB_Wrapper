@@ -2,7 +2,7 @@
 import Armor from './Armor.js';
 import ArmorSearchResultsDisplay from './ArmorSearchResultDisplay.js';
 import { Button, Col, Form, FormGroup, Input, Label } from 'reactstrap';
-
+//
 interface IProps {
     armor: Armor
 }
@@ -14,6 +14,7 @@ interface IState {
     resultDisplay: boolean;
 }
 
+// TODO: Provide advanced search capabilities (i.e. base defence > 50, type = head, etc)
 export class ArmorSearch extends React.Component <IProps, IState> {
     constructor(props: IProps) {
         super(props);
@@ -31,6 +32,8 @@ export class ArmorSearch extends React.Component <IProps, IState> {
 
     handleChange(event: any){
         this.setState({armorSearchText: event.target.value});
+        // Test comment
+        // console.log(test);
     }
 
     handleSubmit(event: any){
