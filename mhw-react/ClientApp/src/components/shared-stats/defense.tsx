@@ -9,9 +9,10 @@ export default class Defense {
     max: number;
     augmented: number;
 
+    // NOTE: May have to use something other than NaN
     constructor(dataObj?: IDefense) {
-        this.base = dataObj && dataObj.base || -1;  // Falsy check (dataobj is null, base isnull)
-        this.max = dataObj && dataObj.max || -1;
-        this.augmented = dataObj && dataObj.augmented || -1;
+        this.base = dataObj && dataObj.base || NaN;  // Falsy check (dataobj is null, base isnull)
+        this.max = dataObj && dataObj.max || NaN;
+        this.augmented = dataObj && dataObj.augmented || NaN;
     }
 }

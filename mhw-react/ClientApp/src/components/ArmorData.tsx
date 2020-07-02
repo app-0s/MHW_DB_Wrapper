@@ -1,6 +1,10 @@
 ﻿import * as React from 'react';
 import Armor from './armor/Armor.js'
 import Defense from './shared-stats/defense.js';
+import { Table, Container, Row, Col } from 'reactstrap';
+import Resistances from './shared-stats/resistances.js';
+import ArmorAttributes from './shared-stats/armor-attributes.js';
+import SkillRank from './shared-stats/skill-rank.js';
 
 interface IProps { 
     location: any
@@ -35,60 +39,64 @@ export class ArmorData extends React.Component<IProps, IState> {
     // I think this is made static to prevent having to bind it
     static renderArmorStats(armor: Armor) {
         return (
-            <div>
-                <h3></h3>
-                <table className='table table-striped'>
-                    <thead>
-                        <tr>
-                            <th>Name: </th>
-                            <th>{armor.name} </th>
-                        </tr>
-                        {
-                            //<tr>
-                            //<th>Stat</th>
-                            //<th>Value</th>
-                            //</tr>
-                        }
-                </thead>
-                <tbody>
+            <Container>
+                <Row>
+                    <Col>
+                        <Table className='table table-striped'>
+                            <thead>
+                                <tr>
+                                    <th>Name: </th>
+                                    <th>{armor.name} </th>
+                                </tr>
+                                {
+                                    //<tr>
+                                    //<th>Stat</th>
+                                    //<th>Value</th>
+                                    //</tr>
+                                }
+                        </thead>
+                        <tbody>
                     
-                    <tr>
-                        <td>Type:</td>
-                        <td>{armor.type} </td>
-                    </tr>
-                    <tr>
-                        <td>Rank:</td>
-                        <td>{armor.rank} </td>
-                    </tr>
-                    {
-                    //<tr>
-                    //    <td>Defense:</td>
-                    //    <td>{armor.defense} </td>
-                    //    </tr>
-                    }
-                    {
-                    //<tr>
-                    //    <td>Resistances:</td>
-                    //    <td>{armor.resistances} </td>
-                    //</tr>
-                    }
-                    {
-                    //<tr>
-                    //    <td>Attributes:</td>
-                    //    <td>{armor.attributes} </td>
-                    //</tr>   
-                    }
-                </tbody>
-                </table>
-
-                {ArmorData.renderArmorDefense(armor.defense)}
-             </div>
+                            <tr>
+                                <td>Type:</td>
+                                <td>{armor.type} </td>
+                            </tr>
+                            <tr>
+                                <td>Rank:</td>
+                                <td>{armor.rank} </td>
+                            </tr>
+                            {
+                            //<tr>
+                            //    <td>Resistances:</td>
+                            //    <td>{armor.resistances} </td>
+                            //</tr>
+                            }
+                            {
+                            //<tr>
+                            //    <td>Attributes:</td>
+                            //    <td>{armor.attributes} </td>
+                            //</tr>   
+                            }
+                        </tbody>
+                        </Table>
+                    </Col>
+                </Row>
+                {/*Render Defensive Stats*/}
+                <Row>
+                    <Col>{ArmorData.renderArmorDefense(armor.defense)}</Col>
+                    <Col>{ArmorData.renderArmorResistances(armor.resistances)}</Col>
+                </Row>
+                <Row>
+                    <Col>{ArmorData.renderArmorSkills(armor.skills)}</Col>
+                    {/*<Col></Col>*/}
+                </Row>
+            </Container>
         );
     }
     // TODO: Would like show set info on side IF a set armor is a part of set  
     static renderArmorDefense(defense: Defense) {
         return (
-            <table className="table table-striped">
+            <Table className="table table-striped">
                 <thead>
                     <tr>
                         <th>Defenses</th>
@@ -108,8 +116,65 @@ export class ArmorData extends React.Component<IProps, IState> {
                         <td>{defense.augmented} </td>
                     </tr>
                 </tbody>
-            </table>
+            </Table>
         )
+    }
+
+    static renderArmorResistances(resistances: Resistances) {
+        return(
+            <Table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Resistances</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Fire:</td>
+                        <td>{resistances.fire} </td>
+                    </tr>
+                    <tr>
+                        <td>Water:</td>
+                        <td>{resistances.water} </td>
+                    </tr>
+                    <tr>
+                        <td>Ice</td>
+                        <td>{resistances.ice} </td>
+                    </tr>
+                    <tr>
+                        <td>Thunder:</td>
+                        <td>{resistances.thunder} </td>
+                    </tr>
+                    <tr>
+                        <td>Dragon</td>
+                        <td>{resistances.dragon} </td>
+                    </tr>
+                </tbody>
+            </Table>
+        )
+    }
+
+    static renderArmorSkills(skills: SkillRank[]) {
+        return (
+            <Table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Skills</th>
+                        {/* <th>Modifiers</th> */}
+                    </tr>
+                </thead>
+                <tbody>
+                    {skills.map(skill =>
+                        <tr key={skill.id} >
+                            <td>{skill.skillName}</td>
+                            <td>Level {skill.level}</td>
+                        </tr>
+                    )}
+                    
+                    {/* Will have to render modifiers based on which values are not 0/null */}
+                </tbody>
+            </Table>
+            )
     }
 
     render()

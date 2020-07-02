@@ -52,6 +52,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ArmorData = void 0;
 var React = require("react");
 var Armor_js_1 = require("./armor/Armor.js");
+var reactstrap_1 = require("reactstrap");
 var ArmorData = /** @class */ (function (_super) {
     __extends(ArmorData, _super);
     function ArmorData(props) {
@@ -73,31 +74,36 @@ var ArmorData = /** @class */ (function (_super) {
     // Note: will break out certain parts into subtable areas
     // I think this is made static to prevent having to bind it
     ArmorData.renderArmorStats = function (armor) {
-        return (React.createElement("div", null,
-            React.createElement("h3", null),
-            React.createElement("table", { className: 'table table-striped' },
-                React.createElement("thead", null,
-                    React.createElement("tr", null,
-                        React.createElement("th", null, "Name: "),
-                        React.createElement("th", null,
-                            armor.name,
-                            " "))),
-                React.createElement("tbody", null,
-                    React.createElement("tr", null,
-                        React.createElement("td", null, "Type:"),
-                        React.createElement("td", null,
-                            armor.type,
-                            " ")),
-                    React.createElement("tr", null,
-                        React.createElement("td", null, "Rank:"),
-                        React.createElement("td", null,
-                            armor.rank,
-                            " ")))),
-            ArmorData.renderArmorDefense(armor.defense)));
+        return (React.createElement(reactstrap_1.Container, null,
+            React.createElement(reactstrap_1.Row, null,
+                React.createElement(reactstrap_1.Col, null,
+                    React.createElement(reactstrap_1.Table, { className: 'table table-striped' },
+                        React.createElement("thead", null,
+                            React.createElement("tr", null,
+                                React.createElement("th", null, "Name: "),
+                                React.createElement("th", null,
+                                    armor.name,
+                                    " "))),
+                        React.createElement("tbody", null,
+                            React.createElement("tr", null,
+                                React.createElement("td", null, "Type:"),
+                                React.createElement("td", null,
+                                    armor.type,
+                                    " ")),
+                            React.createElement("tr", null,
+                                React.createElement("td", null, "Rank:"),
+                                React.createElement("td", null,
+                                    armor.rank,
+                                    " ")))))),
+            React.createElement(reactstrap_1.Row, null,
+                React.createElement(reactstrap_1.Col, null, ArmorData.renderArmorDefense(armor.defense)),
+                React.createElement(reactstrap_1.Col, null, ArmorData.renderArmorResistances(armor.resistances))),
+            React.createElement(reactstrap_1.Row, null,
+                React.createElement(reactstrap_1.Col, null, ArmorData.renderArmorSkills(armor.skills)))));
     };
     // TODO: Would like show set info on side IF a set armor is a part of set  
     ArmorData.renderArmorDefense = function (defense) {
-        return (React.createElement("table", { className: "table table-striped" },
+        return (React.createElement(reactstrap_1.Table, { className: "table table-striped" },
             React.createElement("thead", null,
                 React.createElement("tr", null,
                     React.createElement("th", null, "Defenses"))),
@@ -117,6 +123,51 @@ var ArmorData = /** @class */ (function (_super) {
                     React.createElement("td", null,
                         defense.augmented,
                         " ")))));
+    };
+    ArmorData.renderArmorResistances = function (resistances) {
+        return (React.createElement(reactstrap_1.Table, { className: "table table-striped" },
+            React.createElement("thead", null,
+                React.createElement("tr", null,
+                    React.createElement("th", null, "Resistances"))),
+            React.createElement("tbody", null,
+                React.createElement("tr", null,
+                    React.createElement("td", null, "Fire:"),
+                    React.createElement("td", null,
+                        resistances.fire,
+                        " ")),
+                React.createElement("tr", null,
+                    React.createElement("td", null, "Water:"),
+                    React.createElement("td", null,
+                        resistances.water,
+                        " ")),
+                React.createElement("tr", null,
+                    React.createElement("td", null, "Ice"),
+                    React.createElement("td", null,
+                        resistances.ice,
+                        " ")),
+                React.createElement("tr", null,
+                    React.createElement("td", null, "Thunder:"),
+                    React.createElement("td", null,
+                        resistances.thunder,
+                        " ")),
+                React.createElement("tr", null,
+                    React.createElement("td", null, "Dragon"),
+                    React.createElement("td", null,
+                        resistances.dragon,
+                        " ")))));
+    };
+    ArmorData.renderArmorSkills = function (skills) {
+        return (React.createElement(reactstrap_1.Table, { className: "table table-striped" },
+            React.createElement("thead", null,
+                React.createElement("tr", null,
+                    React.createElement("th", null, "Skills"))),
+            React.createElement("tbody", null, skills.map(function (skill) {
+                return React.createElement("tr", { key: skill.id },
+                    React.createElement("td", null, skill.skillName),
+                    React.createElement("td", null,
+                        "Level ",
+                        skill.level));
+            }))));
     };
     ArmorData.prototype.render = function () {
         var contents = this.state.loading ?

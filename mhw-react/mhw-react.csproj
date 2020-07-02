@@ -28,8 +28,21 @@
   <ItemGroup>
     <None Remove="ClientApp\src\App.tsx" />
     <None Remove="ClientApp\src\components\ArmorData.tsx" />
+    <None Remove="ClientApp\src\components\armor\Armor.tsx" />
     <None Remove="ClientApp\src\components\armor\ArmorSearch.tsx" />
     <None Remove="ClientApp\src\components\shared-stats\defense.tsx" />
+    <None Remove="ClientApp\src\components\shared-stats\resistances.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\components\shared-stats\armor-attributes.tsx" />
+    <TypeScriptCompile Remove="ClientApp\src\components\shared-stats\armor-crafting-info.tsx" />
+    <TypeScriptCompile Remove="ClientApp\src\components\shared-stats\crafting-cost.tsx" />
+    <TypeScriptCompile Remove="ClientApp\src\components\shared-stats\item.tsx" />
+    <TypeScriptCompile Remove="ClientApp\src\components\shared-stats\set-info.tsx" />
+    <TypeScriptCompile Remove="ClientApp\src\components\shared-stats\skill-rank-modifiers.tsx" />
+    <TypeScriptCompile Remove="ClientApp\src\components\shared-stats\skill-rank.tsx" />
+    <TypeScriptCompile Remove="ClientApp\src\components\shared-stats\slot.tsx" />
   </ItemGroup>
 
   <ItemGroup>
