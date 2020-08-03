@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Armor from './Armor.js';
 import { Link } from 'react-router-dom';
 import {ArmorData} from './../ArmorData.js';
+
 
 interface IProps {
     armorSearchResults: Armor[]
@@ -10,14 +12,23 @@ interface IProps {
 // Link uses state and should be rendered on row creation of table
 // TODO: Navlink instead of link
 // hotlink row to armor data page(mouseover(highlight) and onclick?)
-export default function ArmorSearchResultsDisplay(props: IProps){
+export default function ArmorSearchResultsDisplay(props: IProps) {
+    //// React State Hook to store searchResults
+    //const [armorResutls, setArmorResults] = useState(props.armorSearchResults);
+
     function RowClickToLink(aId: number) {
         return <Link to=
             {{
                 pathname: "/armor-data",
-                state: { armorId: aId }
+            state: {
+                armorId: aId
+            }
             }} />;
     }
+
+    //function PushSearchHistory() {
+    //    history.push(`/${armorResutls}`);
+    //}
 
     return <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
@@ -35,7 +46,7 @@ export default function ArmorSearchResultsDisplay(props: IProps){
                         {{
                             pathname: "/armor-data",
                             state: { armorId: armor.id }
-                        }}>{armor.name}
+                        }} onClick={ }>{armor.name}
                     </Link></td>
                   
                     <td>{armor.type}</td>

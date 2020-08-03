@@ -2,6 +2,9 @@
 import Armor from './Armor.js';
 import ArmorSearchResultsDisplay from './ArmorSearchResultDisplay.js';
 import { Button, Col, Form, FormGroup, Input, Label } from 'reactstrap';
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory();
 //
 interface IProps {
     armor: Armor
