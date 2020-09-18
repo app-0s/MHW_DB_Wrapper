@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MHW-DB_Wrapper-UnitTest", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MHW-DB_Console", "MHW-DB_Console\MHW-DB_Console.csproj", "{A686F1FC-33DA-41DD-97A1-1E14BB45E357}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mhw-react", "mhw-react\mhw-react.csproj", "{B009EF97-8E8B-462F-8E35-3001E2365EDC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{A686F1FC-33DA-41DD-97A1-1E14BB45E357}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A686F1FC-33DA-41DD-97A1-1E14BB45E357}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A686F1FC-33DA-41DD-97A1-1E14BB45E357}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B009EF97-8E8B-462F-8E35-3001E2365EDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B009EF97-8E8B-462F-8E35-3001E2365EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B009EF97-8E8B-462F-8E35-3001E2365EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B009EF97-8E8B-462F-8E35-3001E2365EDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

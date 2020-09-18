@@ -26,6 +26,16 @@ namespace MHW_DB_Wrapper
         {
             services.AddControllers();
             services.AddHttpClient();
+
+            services.AddCors(opts =>
+                opts.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyHeader();
+                        builder.AllowAnyMethod();
+                        builder.WithOrigins("http://localhost:3000");
+                    })
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +47,8 @@ namespace MHW_DB_Wrapper
             }
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

@@ -1,4 +1,5 @@
 ﻿using MHW_DB_Wrapper.Data.Entities;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -28,6 +29,7 @@ namespace MHW_DB_Wrapper.Controllers
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls13;
         }
 
+        //[DisableCors]
         [HttpGet]
         ///<summary>Retrieve all armors within DB</summary>
         public async Task<IActionResult> GetAll()
@@ -52,6 +54,8 @@ namespace MHW_DB_Wrapper.Controllers
 
             return BadRequest($"Armor GetAll request failed");
         }
+
+        //[DisableCors]
         [HttpGet("id/{id}", Name = "GetArmorId")]
         public async Task<IActionResult> Get(int? id)
         {
@@ -81,7 +85,7 @@ namespace MHW_DB_Wrapper.Controllers
 
             return BadRequest($"Armor Get request failed (for ID {id})");
         }
-        
+
         //test for react
         //[HttpGet("id/am/{id}", Name = "GetArmorIdAm")]
         //public Armor GetAm(int id)
@@ -117,6 +121,7 @@ namespace MHW_DB_Wrapper.Controllers
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
+        [EnableCors]
         [HttpGet("name/{name}")]
         public async Task<IActionResult> Get(string name)
         {
@@ -147,6 +152,7 @@ namespace MHW_DB_Wrapper.Controllers
         /// </summary>
         /// <param name="qstring">Query string of parameters to search for</param>
         /// <returns></returns>
+        [EnableCors]
         [HttpGet("search/armor/qname={armorQname}")]// Long winded form, may reduce to something that allows greater flexibility and more advanced searches
         public async Task<IActionResult> Search(string armorQname)
         {
